@@ -1,10 +1,20 @@
 public class Reversi {
-    private int[][] board;
+    private final int[][] board;
     private int currentPlayer;
 
-    public static final int EMPTY = 0;
-    public static final int BLACK = 1;
-    public static final int WHITE = 2;
+    public static final int EMPTY = -1;
+    public static final int BLACK = 0;
+    public static final int WHITE = 1;
+    private static final int[][] DIRECTIONS = {
+            { -1, 0 }, // Up
+            { 1, 0 }, // Down
+            { 0, -1 }, // Left
+            { 0, 1 }, // Right
+            { -1, -1 }, // Up-Left
+            { -1, 1 }, // Up-Right
+            { 1, -1 }, // Down-Left
+            { 1, 1 } // Down-Right
+    };
 
     public Reversi() {
         board = new int[8][8];
@@ -18,16 +28,13 @@ public class Reversi {
         currentPlayer = BLACK;
     }
 
-    private static final int[][] DIRECTIONS = {
-            { -1, 0 }, // Up
-            { 1, 0 }, // Down
-            { 0, -1 }, // Left
-            { 0, 1 }, // Right
-            { -1, -1 }, // Up-Left
-            { -1, 1 }, // Up-Right
-            { 1, -1 }, // Down-Left
-            { 1, 1 } // Down-Right
-    };
+    public int[][] getBoard() {
+        return board;
+    }
+
+    public int getCurrentPlayer() {
+        return currentPlayer;
+    }
 
     private boolean isValidMove(int row, int col, int player) {
         // 1. The cell must be empty.
